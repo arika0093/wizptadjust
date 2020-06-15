@@ -4,8 +4,8 @@
 var riot = require("riot");
 require("./requireTags.js");
 
-require("./js/globalvar.js");
-require("./js/routing.js");
+require("./globalvar.js");
+require("./routing.js");
 
 // global observable
 global.Observer = riot.observable();

@@ -6,6 +6,6 @@ config/
 local/
 server/
 gulpfile.js
-docs/now.json
+release/now.json
 
 client/
