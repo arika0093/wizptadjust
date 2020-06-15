@@ -1,11 +1,9 @@
 node_modules/
 package-lock.json
 .idea/
-client/render
-config/
+# config/
 local/
-server/
-gulpfile.js
-release/now.json
+# server/
+# gulpfile.js
 
-client/
+# client/
