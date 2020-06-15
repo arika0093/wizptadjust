@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server/index.js",
     "serve": "gulp serve",
+    "compile": "gulp compile-precommit",
     "publish": "gulp compile-precommit && npm run now",
     "now": "cd release && now && now alias && now rm wizpt --safe --yes"
   },

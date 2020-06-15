@@ -228,7 +228,8 @@ toppage
 			this.isUseDailyPtList = opts.nowDailyPt > 0;
 
 			opts.isNoDowngrade = $("#noDowngrade").prop("checked");
-			opts.startMargin = $("#ptmargin").val() - 0 || this.DEFAULT_START_MARGIN;
+			var mrg = $("#ptmargin").val();
+			opts.startMargin = mrg.length > 0 ? mrg - 0 : this.DEFAULT_START_MARGIN;
 
 			opts.quests = $.extend([], Pts).filter(e => {
 				return !(e.is_dg && opts.isNoDowngrade)
