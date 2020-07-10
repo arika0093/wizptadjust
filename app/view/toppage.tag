@@ -207,7 +207,7 @@ toppage
 	// Script
 	script.
 		const $ = require("jquery");
-		const Pts = require("../data/pts.js");
+		const Pts = require("../js/ptsload.js");
 
 		this.DEFAULT_START_MARGIN = 100000;
 		this.consoleList = [];

@@ -14,7 +14,7 @@ header
 
 	.link.sub.information
 		| » ポイント調整の計算補助ツール
-	//-.link.sub.deflink
+	.link.sub.deflink
 		a(href="/#!/define") 登録データ確認
 	//-.link.sub.twitter
 		a(href="https://twitter.com/ark4x" target="_blank") Twitter

@@ -7,3 +7,6 @@ require("../view/footer.tag");
 
 // toppage
 require("../view/toppage.tag");
+
+// define
+require("../view/define.tag");
