@@ -231,7 +231,7 @@ toppage
 			var mrg = $("#ptmargin").val();
 			opts.startMargin = mrg.length > 0 ? mrg - 0 : this.DEFAULT_START_MARGIN;
 
-			opts.quests = $.extend([], Pts).filter(e => {
+			opts.quests = $.extend([], Pts.load()).filter(e => {
 				return !(e.is_dg && opts.isNoDowngrade)
 			});
 			if(opts.evh_pt > 0){
