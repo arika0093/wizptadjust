@@ -22,7 +22,11 @@ route(function(tag) {
 });
 
 // routing開始
-route.base('#!');
+if(window.location.href.includes("http")){
+	route.base('/wizptadjust/');
+} else {
+	route.base('#!');
+}
 route.start(true);
 
 window.addEventListener("DOMContentLoaded", () => {
