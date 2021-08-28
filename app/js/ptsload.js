@@ -6,9 +6,13 @@ module.exports = {
 		var i = JSON.parse(s.getItem("pts"));
 		if(!i){
 			s.setItem("pts", JSON.stringify(Pts));
-			return Pts;
+			return Pts
+		} else {
+			return i
 		}
-		return i;
+	},
+	load_filtered: function() {
+		return this.load().filter(e => !e.is_deleted);
 	},
 	save: (ls) => {
 		var s = localStorage;

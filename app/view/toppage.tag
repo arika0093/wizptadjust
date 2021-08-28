@@ -27,6 +27,22 @@ toppage
 				label.iform(for="noDowngrade")
 					input#noDowngrade(type="checkbox" checked="true") 
 					span.chdesc 降段しないように調整する
+				label.iform(for="replaceAllPts")
+					input#replaceAllPts(type="checkbox" checked="{replaceAllPts}" onclick="{toggleAllPtsDisplay}") 
+					span.chdesc 定義済ポイントを手動で調整する
+				.pointDetailOpt(if="{replaceAllPts}")
+					virtual(each="{pt in Pts}")
+						label.iform(for="evh_detail_{pt.id}")
+							span.desc_opt {pt.name}({pt.rank})
+							input(id="evh_detail_{pt.id}" type="number" value="{pt.pt}")
+					.descssss 一時的な変更と思われる場合はここで修正してください。
+						| 数回継続している or 段位追加時は
+						br
+						a(target="_blank" href="https://twitter.com/ark4x") @ark4x
+						| にその旨お知らせいただくか、
+						a(target="_blank" href="https://github.com/arika0093/wizptadjust") GitHub
+						| にpull requestを送信ください。
+
 
 			.pointCalcUsedList
 
@@ -51,7 +67,7 @@ toppage
 					td.beforerun(colspan=5) (周回前)
 					td.added_tp {runInitTp}
 					td.added_dp(if="{isUseDailyPtList}") {runInitDp}
-				tr.route(each="{r in todoQsts}" class="{un: r.rankNum > 1}")
+				tr.route(each="{r in todoQsts}" class="{un: r.rankNum > 1}" if="{r.point}")
 					td.type {r.type}
 					td.name {r.name}
 					td.rank {r.rank}
@@ -84,6 +100,11 @@ toppage
 			background-color: #E0EEFF;
 		}
 
+		.pointDetailOpt{
+			background-color: rgba(0,0,255,0.1);
+			padding: .5ex 0;
+		}
+
 		label.iform {
 			display: flex;
 			flex-direction: row;
@@ -100,7 +121,7 @@ toppage
 			width: 300px;
 		}
 
-		span.desc {
+		span.desc, span.desc_opt {
 			width: 200px;
 			text-align: right;
 		}
@@ -109,10 +130,24 @@ toppage
 			content: ":";
 			margin-right: 1em;
 		}
+		span.desc_opt:after {
+			display: inline-block;
+			content: "≫";
+			margin-right: 1em;
+		}
 		span.default {
 			margin-left: 1ex;
 			font-size: .8rem;
 			color: #444;
+		}
+		span.labelAction {
+			color: #00C;
+			cursor: pointer;
+		}
+		.descssss {
+			margin-top: 1.5ex;
+			font-size: 0.8rem;
+			text-align: center;
 		}
 
 		@media screen and (max-width: 600px) { 
@@ -207,11 +242,13 @@ toppage
 	// Script
 	script.
 		const $ = require("jquery");
-		const Pts = require("../js/ptsload.js");
+		this.Pts = require("../js/ptsload.js").load_filtered();
+		this.PurePts = $.extend(true, {}, this.Pts)
 
 		this.DEFAULT_START_MARGIN = 100000;
 		this.consoleList = [];
 		this.todoQsts = [];
+		this.replaceAllPts = false;
 		this.isUseDailyPtList = false;
 		this.runInitTp = 0;
 		this.runInitDp = 0;
@@ -232,11 +269,15 @@ toppage
 			var mrg = mrg_s.length > 0 ? mrg_s - 0 : this.DEFAULT_START_MARGIN;
 			opts.startMargin = opts.getPoint > mrg ? mrg : 0;
 
-			opts.quests = $.extend([], Pts.load()).filter(e => {
+			current_pts = this.getPointsList()
+			opts.quests = $.extend([], current_pts).filter(e => {
 				return !(e.is_dg && opts.isNoDowngrade)
+			}).filter(e => {
+				return e.pt > 0;
 			});
 			if(opts.evh_pt > 0){
 				opts.quests.push({
+					id: 9999,
 					name: "覇級",
 					rank: "1位",
 					pt: opts.evh_pt,
@@ -248,6 +289,19 @@ toppage
 			opts.calcText = this.generateCalcText(opts);
 			this.outputLog(`--- Running Start ------------`, true);
 			this.runAdjustPtWorker(opts);
+		}
+
+		this.getPointsList = () => {
+			if(!this.replaceAllPts){
+				return this.PurePts
+			}
+			for(var pt of this.Pts){
+				var d = $(`#evh_detail_${pt.id}`)
+				if(!d){ continue; }
+				var pt_replaced = d.val() - 0;
+				pt.pt = pt_replaced
+			}
+			return this.Pts
 		}
 
 		this.generateCalcText = (opts) => {
@@ -341,6 +395,10 @@ toppage
 				return 0;
 			});
 
+			if(!qst || qst.length <= 0){
+				return;
+			}
+
 			var qfst = qst[0];
 			qfst.isMainQuest = true;
 			if(targetPt >= margin){
@@ -375,4 +433,8 @@ toppage
 			}
 			console.log(opts);
 			this.update();
+		}
+
+		this.toggleAllPtsDisplay = () => {
+			this.replaceAllPts = !this.replaceAllPts
 		}
