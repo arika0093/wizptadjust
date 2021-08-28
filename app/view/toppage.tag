@@ -296,9 +296,7 @@ toppage
 				return this.PurePts
 			}
 			for(var pt of this.Pts){
-				var d = $(`#evh_detail_${pt.id}`)
-				if(!d){ continue; }
-				var pt_replaced = d.val() - 0;
+				var pt_replaced = $(`#evh_detail_${pt.id}`).val() - 0;
 				pt.pt = pt_replaced
 			}
 			return this.Pts
