@@ -2,6 +2,9 @@ const Pts = require("../data/pts.js");
 
 module.exports = {
 	load: () => {
+		return Pts
+	},
+	load_from_storage: () => {
 		var s = localStorage;
 		var i = JSON.parse(s.getItem("pts"));
 		if(!i){

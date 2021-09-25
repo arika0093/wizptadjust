@@ -4,7 +4,7 @@ module.exports = [
 		"name": "絶級",
 		"rank": "1位",
 		"rankNum": 1,
-		"pt": 3900,
+		"pt": 4000,
 		"is_ev": true
 	},
 	{
@@ -12,7 +12,7 @@ module.exports = [
 		"name": "上級",
 		"rank": "1位",
 		"rankNum": 1,
-		"pt": 1500,
+		"pt": 2200,
 		"is_ev": true
 	},
 	{
@@ -20,7 +20,7 @@ module.exports = [
 		"name": "中級",
 		"rank": "1位",
 		"rankNum": 1,
-		"pt": 1000,
+		"pt": 1500,
 		"is_ev": true
 	},
 	{
@@ -28,7 +28,7 @@ module.exports = [
 		"name": "絶級",
 		"rank": "9位以下",
 		"rankNum": 9,
-		"pt": 528,
+		"pt": 541,
 		"is_ev": true,
 		"is_lo": true
 	},
@@ -37,7 +37,7 @@ module.exports = [
 		"name": "上級",
 		"rank": "9位以下",
 		"rankNum": 9,
-		"pt": 203,
+		"pt": 298,
 		"is_ev": true,
 		"is_lo": true
 	},
@@ -46,7 +46,7 @@ module.exports = [
 		"name": "中級",
 		"rank": "9位以下",
 		"rankNum": 9,
-		"pt": 135,
+		"pt": 203,
 		"is_ev": true,
 		"is_lo": true
 	},
@@ -55,28 +55,28 @@ module.exports = [
 		"name": "拾式",
 		"rank": "1位",
 		"rankNum": 1,
-		"pt": 5500
+		"pt": 4000
 	},
 	{
 		"id": 7,
 		"name": "玖式",
 		"rank": "1位",
 		"rankNum": 1,
-		"pt": 4800
+		"pt": 3000
 	},
 	{
 		"id": 8,
 		"name": "捌式",
 		"rank": "1位",
 		"rankNum": 1,
-		"pt": 4200,
+		"pt": 2000,
 	},
 	{
 		"id": 9,
 		"name": "漆式",
 		"rank": "1位",
 		"rankNum": 1,
-		"pt": 3600,
+		"pt": 1000,
 		"is_dg": true,
 		"is_deleted": true // 調整では極力使用しないようにしたいのでCO
 	},
@@ -85,7 +85,7 @@ module.exports = [
 		"name": "拾式",
 		"rank": "9位以下",
 		"rankNum": 9,
-		"pt": 713,
+		"pt": 541,
 		"is_lo": true,
 		"is_dg": true
 	},
@@ -94,7 +94,7 @@ module.exports = [
 		"name": "玖式",
 		"rank": "9位以下",
 		"rankNum": 9,
-		"pt": 650,
+		"pt": 398,
 		"is_lo": true
 	},
 	{
@@ -102,7 +102,7 @@ module.exports = [
 		"name": "捌式",
 		"rank": "9位以下",
 		"rankNum": 9,
-		"pt": 572,
+		"pt": 265,
 		"is_lo": true
 	},
 	{
@@ -110,7 +110,7 @@ module.exports = [
 		"name": "漆式",
 		"rank": "9位以下",
 		"rankNum": 9,
-		"pt": 490,
+		"pt": 133,
 		"is_lo": true,
 		"is_dg": true,
 		"is_deleted": true // 調整では極力使用しないようにしたいのでCO
